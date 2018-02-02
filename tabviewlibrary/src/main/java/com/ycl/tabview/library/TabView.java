@@ -195,7 +195,7 @@ public class TabView extends RelativeLayout {
             mSupportFragmentManager.beginTransaction().add(R.id.tabview_fragment_container, mFragments[mTabViewDefaultPosition]).show(mFragments[mTabViewDefaultPosition]).commit();
         }
 
-
+        // 这里是底部导航栏的布局
         for(int i=0;i<mTabViewChildList.size();i++){
             final TabViewChild t=mTabViewChildList.get(i);
             LinearLayout tabChild=new LinearLayout(getContext());
