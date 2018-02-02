@@ -105,11 +105,11 @@ public class TabView extends RelativeLayout {
         mTextViewSize=TabViewUtil.sp2px(context,14);
         mImageViewWidth=TabViewUtil.dp2px(context,30);
         mImageViewHeight=TabViewUtil.dp2px(context,30);
-
     }
 
 
     private void initCustomAttrs(Context context, AttributeSet attrs) {
+        //加载attr里面的属性，详细可以看 https://www.jianshu.com/p/61b79e7f88fc
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TabView);
         final int N = typedArray.getIndexCount();
         for (int i = 0; i < N; i++) {
