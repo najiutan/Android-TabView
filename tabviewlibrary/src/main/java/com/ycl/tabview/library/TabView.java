@@ -142,19 +142,20 @@ public class TabView extends RelativeLayout {
         }
     }
     private void initView(Context context){
+        //这个是低下总体的导航栏布局
         tabview=new LinearLayout(context);
         tabview.setId(R.id.tabview_id);
 
 
         mFragmentContainer=new FrameLayout(context);
         mFragmentContainer.setId(R.id.tabview_fragment_container);
-        RelativeLayout.LayoutParams fragmentContainerParams=new RelativeLayout.LayoutParams(RMP,RMP);
+        RelativeLayout.LayoutParams fragmentContainerParams=new RelativeLayout.LayoutParams(RMP,RMP);//铺满父控件
         RelativeLayout.LayoutParams tabviewParams=null;
         if(mTabViewGravity==Gravity.BOTTOM){
             tabviewParams=new RelativeLayout.LayoutParams(RMP,mTabViewHeight);
             tabview.setOrientation(LinearLayout.HORIZONTAL);
             tabviewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            fragmentContainerParams.addRule(RelativeLayout.ABOVE,R.id.tabview_id);
+            fragmentContainerParams.addRule(RelativeLayout.ABOVE,R.id.tabview_id);//位于导航栏上方
         }else if(mTabViewGravity==Gravity.LEFT){
             tabviewParams=new RelativeLayout.LayoutParams(mTabViewHeight,RMP);
             tabview.setOrientation(LinearLayout.VERTICAL);
@@ -199,11 +200,14 @@ public class TabView extends RelativeLayout {
         for(int i=0;i<mTabViewChildList.size();i++){
             final TabViewChild t=mTabViewChildList.get(i);
             LinearLayout tabChild=new LinearLayout(getContext());
+            //此处相当于布局文件中的Android：gravity属性, 设置布局管理器内组件的对齐方式
+            //tabChild是垂直布局的，并且这个linearlayout里面的所有控件是居中的
             tabChild.setGravity(Gravity.CENTER);
             tabChild.setOrientation(LinearLayout.VERTICAL);
             LinearLayout.LayoutParams tabChildParams=null;
             if(mTabViewGravity==Gravity.BOTTOM){
                 tabChildParams=new LinearLayout.LayoutParams(0,LMP,1.0f);
+                //此处相当于布局文件中的Android:layout_gravity属性，相对于父view的布局
                 tabChildParams.gravity= Gravity.CENTER_HORIZONTAL;
             }else if(mTabViewGravity==Gravity.LEFT){
                 tabChildParams=new LinearLayout.LayoutParams(LMP,0,1.0f);
@@ -216,8 +220,6 @@ public class TabView extends RelativeLayout {
                 tabChildParams.gravity= Gravity.CENTER_VERTICAL;
             }
             tabChild.setLayoutParams(tabChildParams);
-
-
 
             final ImageView imageview=new ImageView(getContext());
             LinearLayout.LayoutParams ivParams=new LinearLayout.LayoutParams(
